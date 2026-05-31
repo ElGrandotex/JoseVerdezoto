@@ -1,6 +1,20 @@
 # JoseVerdezoto
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+Aplicación bancaria desarrollada con Angular 20, siguiendo principios de **Clean Code**, **Clean Architecture** y **SOLID**
+
+## Funcionalidades implementadas y probadas consummiendo servicios Backend
+- F1. Listar productos financieros en tabla
+- F2. Busqueda mediante input de texto. Permite buscar por Nombre, Descripcion y Fechas
+- F3. Se aplica paginacion mostrando 5, 10 o 20 items en la tabla controlado por un select
+- F4. Mediante el boton `Agregar` se ingresa al formulario de registro en el cual se tiene un formulario con validaciones en cada campo, una vez ingresado correctamente los valores se habilita el boton de enviar y se agrega el item. Adicional, se tiene el boton `Reiniciar` que limpia los campos.
+- F5. Al seleccionar un item de la tabla se abre el menu dropdown en donde se tienen los botones de `Editar` y `Eliminar`. Al seleccionar en `Editar` se abre el formulario de registro con los campos completados segun el id del item y se deshabilita el campo del ID. Al modificar la informacion y si cumple las validaciones necesarias se habilita el boton `Enviar` y se guardan los cambios del item
+- F6. Al abrir el menu dropdown se puede seleccionar el boton de `Eliminar`, el cual abre un modal pidiendo confirmacion para eliminarlo y se elimina el item
+
+## Instalación
+
+```bash
+npm install
+```
 
 ## Development server
 
@@ -12,48 +26,31 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
 ## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Ejecutar pruebas [Jest](https://jestjs.io/), usando el comando:
 
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Para ejecutar las pruebas en modo vigilancia:
 
 ```bash
-ng e2e
+npm run test:watch
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Para generar reporte de cobertura:
 
-## Additional Resources
+```bash
+npm run test:coverage
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Scripts disponibles
+
+- `ng serve` - inicia el servidor de desarrollo
+- `npm run build` - compila la aplicación
+- `npm test` - ejecuta las pruebas unitarias con Jest
+- `npm run test:watch` - ejecuta Jest en modo observación
+- `npm run test:coverage` - ejecuta Jest con reporte de cobertura
