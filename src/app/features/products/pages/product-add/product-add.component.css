@@ -1,0 +1,116 @@
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 12px;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 26px;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: #ddd;
+  margin-bottom: 16px;
+}
+
+.form-card .divider {
+  margin-bottom: 1.25rem;
+}
+
+.columns {
+  display: flex;
+  gap: 20px;
+}
+
+.left, .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-weight: 600;
+}
+
+.field-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.field-input.ng-invalid.ng-touched {
+  border-color: #b91c1c;
+  color: #b91c1c;
+  outline: none;
+}
+
+.field-input.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.12);
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.error span {
+  color: #b91c1c;
+}
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form-card {
+    padding: 1rem;
+  }
+
+  .columns {
+    flex-direction: column;
+  }
+}
+
+.btn {
+  min-width: 130px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn.secondary {
+  background: #e5e7eb;
+  color: #1d4ed8;
+}
+
+.btn.primary {
+  background: #facc15;
+  color: #1d4ed8;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

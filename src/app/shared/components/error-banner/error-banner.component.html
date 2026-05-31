@@ -1,0 +1,32 @@
+@if (errors.length > 0) {
+  <section class="error-banner" role="alert" aria-live="polite">
+    @for (error of errors; track error.timestamp) {
+      <article class="error-message">
+        <div class="error-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+            <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" />
+            <circle cx="12" cy="16" r="1" fill="currentColor" />
+          </svg>
+        </div>
+
+        <div class="error-content">
+          <p class="error-title">{{ error.code }}</p>
+          <p class="error-text">{{ getErrorMessage(error) }}</p>
+        </div>
+
+        <button
+          type="button"
+          class="error-close"
+          (click)="dismiss(error)"
+          aria-label="Cerrar mensaje de error"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" />
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </button>
+      </article>
+    }
+  </section>
+}

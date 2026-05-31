@@ -1,0 +1,107 @@
+:host {
+  --header-bg-color: #ffffff;
+  --header-accent-color: #1d4ed8;
+  --header-height: 80px;
+  --spacing-unit: 16px;
+  --border-radius: 8px;
+  --shadow-elevation-2: 0 1px 4px rgba(15, 23, 42, 0.08);
+  --transition-duration: 300ms;
+  --transition-timing: ease-in-out;
+}
+
+.app-header {
+  background: var(--header-bg-color);
+  color: var(--header-accent-color);
+  padding: 0;
+  margin: 0;
+  box-shadow: var(--shadow-elevation-2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-unit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--header-height);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.header-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--header-accent-color);
+}
+
+.header-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--header-accent-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  :host {
+    --header-height: 64px;
+  }
+
+  .app-header {
+    position: relative;
+  }
+
+  .header-container {
+    height: var(--header-height);
+    padding: 0 calc(var(--spacing-unit) * 0.75);
+  }
+
+  .header-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-title {
+    font-size: 1.75rem;
+  }
+
+  .header-content {
+    gap: var(--spacing-unit);
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    --header-height: 56px;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .header-icon {
+    width: 36px;
+    height: 36px;
+  }
+}

@@ -1,0 +1,111 @@
+<section class="product-page">
+  <header class="toolbar">
+    <div class="toolbar__search">
+      <input
+        id="product-search"
+        class="search-input"
+        type="text"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Search..."
+        autocomplete="off"
+      />
+    </div>
+
+    <button class="add-button" type="button" (click)="addProduct()">
+      AGREGAR
+    </button>
+  </header>
+
+  <div class="table-card">
+
+    @if (loading()) {
+      <div class="empty-state">
+        <p>Cargando productos...</p>
+      </div>
+    } @else if (pagedProducts().length > 0) {
+      <div class="table-scroll" role="region" aria-label="Tabla de productos" tabindex="0">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Nombre del producto</th>
+              <th>Descripción</th>
+              <th>Fecha de liberación</th>
+              <th>Fecha de reestructuración</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (product of pagedProducts(); track product.id) {
+              <tr class="clickable-row" (click)="onRowClick(product)">
+                <td>
+                  <img class="product-logo" [src]="product.logoUrl" [alt]="product.name" />
+                </td>
+                <td>
+                  <strong>{{ product.name }}</strong>
+                </td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.releaseDate | date : 'dd/MM/yyyy' }}</td>
+                <td>{{ product.restructuredDate | date : 'dd/MM/yyyy' }}</td>
+                <td></td>
+              </tr>
+              @if (openMenuProductId() === product.id) {
+                <tr class="menu-row">
+                  <td colspan="6">
+                    <div class="row-menu__dropdown" role="menu">
+                      <button type="button" class="row-menu__item" role="menuitem" (click)="editProduct(product)">
+                        Editar
+                      </button>
+                      <button type="button" class="row-menu__item danger" role="menuitem" (click)="deleteProduct(product)">
+                        Eliminar
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="empty-state">
+        <p>No se encontraron productos con el criterio ingresado.</p>
+      </div>
+    }
+
+    <footer class="pagination" aria-label="Paginación de productos">
+      <div class="pagination__summary">{{ displayedResults() }} resultados</div>
+
+      <div class="pagination__controls">
+        <select
+          id="page-size"
+          class="pagination__select"
+          [ngModel]="pageSize()"
+          (ngModelChange)="onPageSizeChange($event)"
+        >
+          @for (size of pageSizeOptions; track size) {
+            <option [value]="size">{{ size }}</option>
+          }
+        </select>
+      </div>
+    </footer>
+  </div>
+
+  @if (productPendingDelete(); as productToDelete) {
+    <div class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+      <div class="modal-card">
+        <h3 id="delete-modal-title" class="modal-title">
+          Estas seguro de eliminar el producto {{ productToDelete.name }}?
+        </h3>
+
+        <hr class="modal-divider" />
+
+        <div class="modal-actions">
+          <button type="button" class="modal-button secondary" (click)="cancelDelete()">Cancelar</button>
+          <button type="button" class="modal-button primary" (click)="confirmDelete()">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  }
+</section>

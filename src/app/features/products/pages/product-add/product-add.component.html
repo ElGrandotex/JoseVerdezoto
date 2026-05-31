@@ -1,0 +1,112 @@
+<div class="container">
+  <section class="form-card">
+    <h1 class="title">Formulario de Registro</h1>
+    <hr class="divider" />
+
+    <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="columns">
+      <div class="left">
+        <label>ID</label>
+        <input class="field-input" formControlName="id" />
+        @if (form.get('id')?.touched && form.get('id')?.invalid) {
+          <div class="error">
+            @if (form.get('id')?.errors?.['required']) {
+              <span>El id es requerido.</span>
+            }
+            @if (form.get('id')?.errors?.['minlength']) {
+              <span>Mínimo 3 caracteres.</span>
+            }
+            @if (form.get('id')?.errors?.['maxlength']) {
+              <span>Máximo 10 caracteres.</span>
+            }
+            @if (form.get('id')?.errors?.['idTaken']) {
+              <span>El id ya existe.</span>
+            }
+            @if (form.get('id')?.errors?.['verificationFailed']) {
+              <span>No se pudo verificar el id.</span>
+            }
+          </div>
+        }
+
+        @if (idStatus() === 'checking') {
+          <div class="info">Verificando disponibilidad...</div>
+        }
+        @if (idStatus() === 'available') {
+          <div class="info">ID disponible.</div>
+        }
+        @if (idStatus() === 'taken') {
+          <div class="info">ID no disponible.</div>
+        }
+        @if (idStatus() === 'error') {
+          <div class="error">No fue posible verificar en este momento.</div>
+        }
+
+        <label>Descripción</label>
+        <input class="field-input" type="text" formControlName="description" />
+        @if (form.get('description')?.touched && form.get('description')?.invalid) {
+          <div class="error">
+            @if (form.get('description')?.errors?.['required']) {
+              <span>La descripción es requerida.</span>
+            }
+            @if (form.get('description')?.errors?.['minlength']) {
+              <span>Mínimo 10 caracteres.</span>
+            }
+            @if (form.get('description')?.errors?.['maxlength']) {
+              <span>Máximo 200 caracteres.</span>
+            }
+          </div>
+        }
+
+        <label>Fecha de liberación</label>
+        <input class="field-input" type="date" formControlName="releaseDate" />
+        @if (form.get('releaseDate')?.touched && form.get('releaseDate')?.invalid) {
+          <div class="error">
+            @if (form.get('releaseDate')?.errors?.['required']) {
+              <span>La fecha es requerida.</span>
+            }
+            @if (form.get('releaseDate')?.errors?.['minDate']) {
+              <span>La fecha debe ser hoy o posterior.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="right">
+        <label>Nombre</label>
+        <input class="field-input" formControlName="name" />
+        @if (form.get('name')?.touched && form.get('name')?.invalid) {
+          <div class="error">
+            @if (form.get('name')?.errors?.['required']) {
+              <span>El nombre es requerido.</span>
+            }
+            @if (form.get('name')?.errors?.['minlength']) {
+              <span>Mínimo 5 caracteres.</span>
+            }
+            @if (form.get('name')?.errors?.['maxlength']) {
+              <span>Máximo 100 caracteres.</span>
+            }
+          </div>
+        }
+
+          <label>Logo (URL)</label>
+          <input class="field-input" formControlName="logo" />
+        @if (form.get('logo')?.touched && form.get('logo')?.invalid) {
+          <div class="error">
+            @if (form.get('logo')?.errors?.['required']) {
+              <span>El logo es requerido.</span>
+            }
+          </div>
+        }
+
+        <label>Fecha de revisión</label>
+        <input class="field-input" type="date" formControlName="revisionDate" [disabled]="true" />
+      </div>
+    </div>
+
+      <div class="actions">
+        <button type="button" (click)="reset()" class="btn secondary">Reiniciar</button>
+        <button type="submit" [disabled]="form.invalid || submitting" class="btn primary">Enviar</button>
+      </div>
+    </form>
+  </section>
+</div>

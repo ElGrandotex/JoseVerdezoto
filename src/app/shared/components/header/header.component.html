@@ -1,0 +1,19 @@
+<header class="app-header" [attr.aria-label]="config.ariaLabel" role="banner">
+  <div class="header-container">
+    <div class="header-content">
+      @if (config.showMoneyIcon) {
+        <div class="header-icon-wrapper">
+          <img
+            class="header-icon"
+            src="https://cdn-icons-png.flaticon.com/512/5733/5733519.png"
+            alt="Banco"
+            loading="eager"
+            aria-hidden="true"
+          />
+        </div>
+      }
+
+      <h1 class="header-title">{{ config.title }}</h1>
+    </div>
+  </div>
+</header>
