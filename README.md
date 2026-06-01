@@ -2,6 +2,9 @@
 
 Aplicación bancaria desarrollada con Angular 20, siguiendo principios de **Clean Code**, **Clean Architecture** y **SOLID**
 
+## Repositorio GitHub
+https://github.com/ElGrandotex/JoseVerdezoto
+
 ## Funcionalidades implementadas y probadas consummiendo servicios Backend
 - F1. Listar productos financieros en tabla
 - F2. Busqueda mediante input de texto. Permite buscar por Nombre, Descripcion y Fechas
